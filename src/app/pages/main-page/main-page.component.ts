@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener  } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Doctor } from '../../interfaces/doctor.interface';
@@ -43,5 +43,9 @@ export class MainPageComponent {
         this.doctors = this.doctorsFilter?.filter(({ fname }: Doctor) => {
             return fname.toLowerCase().includes(search.toLowerCase());
         });
+    }
+
+    @HostListener('window:scroll', ['$event'])onScroll(event: Event): void {
+        console.log(event.target); 
     }
 }
